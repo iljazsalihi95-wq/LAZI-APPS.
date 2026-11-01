@@ -1,0 +1,29 @@
+name: Deploy LAZI APPS to Cloudflare
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'apps.json'
+      - 'assets/**'
+      - 'wrangler.jsonc'
+      - '.github/workflows/deploy-cloudflare.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check website files
+        run: |
+          test -s index.html
+          test -s apps.json
+          test -d assets
+      - name: Deploy existing Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
