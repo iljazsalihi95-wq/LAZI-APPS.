@@ -14,3 +14,5 @@ The GitHub Actions workflow `.github/workflows/deploy-cloudflare.yml` deploys th
 The workflow is also manually triggerable. **Do not run until the site files and assets are committed**. Never commit API tokens or private credentials.
 
 Live address: https://lazi-apps.lazisalihi.workers.dev/
+
+Cloudflare Git integration connected on 2026-11-02. Trigger first deployment from main.
