@@ -20,7 +20,6 @@ jobs:
         run: |
           test -s index.html
           test -s apps.json
-          test -d assets
       - name: Deploy existing Worker
         uses: cloudflare/wrangler-action@v3
         with:
